@@ -102,7 +102,12 @@ def show_perhitungan():
                 plot_pie_chart(cluster_counts)
 
                 # Menghitung rata-rata atribut per cluster
-                cluster_means = df_perhitungan.groupby('Cluster').mean()
+                # cluster_means = df_perhitungan.groupby('Cluster').mean()
+                # st.write("Rata-rata atribut per cluster:")
+                # st.write(cluster_means)
+
+                numeric_columns = df_perhitungan.select_dtypes(include=[np.number]).columns
+                cluster_means = df_perhitungan.groupby('Cluster')[numeric_columns].mean()
                 st.write("Rata-rata atribut per cluster:")
                 st.write(cluster_means)
 
